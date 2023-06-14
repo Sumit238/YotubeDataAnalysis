@@ -1,0 +1,269 @@
+{
+	"jobConfig": {
+		"name": "yda_csv_toParquet_Dev",
+		"description": "",
+		"role": "arn:aws:iam::926526491507:role/de-project-sc3-full-access",
+		"command": "glueetl",
+		"version": "3.0",
+		"runtime": null,
+		"workerType": "G.1X",
+		"numberOfWorkers": 5,
+		"maxCapacity": 5,
+		"maxRetries": 0,
+		"timeout": 2880,
+		"maxConcurrentRuns": 1,
+		"security": "none",
+		"scriptName": "yda_csv_to_parquet.py",
+		"scriptLocation": "s3://aws-glue-assets-926526491507-us-east-1/scripts/",
+		"language": "python-3",
+		"jobParameters": [],
+		"tags": [],
+		"jobMode": "DEVELOPER_MODE",
+		"createdOn": "2023-06-05T10:46:32.262Z",
+		"developerMode": true,
+		"connectionsList": [],
+		"temporaryDirectory": "s3://aws-glue-assets-926526491507-us-east-1/temporary/",
+		"logging": true,
+		"glueHiveMetastore": true,
+		"etlAutoTuning": true,
+		"metrics": true,
+		"spark": true,
+		"bookmark": "job-bookmark-enable",
+		"sparkPath": "s3://aws-glue-assets-926526491507-us-east-1/sparkHistoryLogs/",
+		"flexExecution": false,
+		"minFlexWorkers": null
+	},
+	"dag": {
+		"node-1": {
+			"nodeId": "node-1",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [],
+			"name": "Data Catalog table",
+			"generatedNodeName": "DataCatalogtable_node1",
+			"classification": "DataSource",
+			"type": "Catalog",
+			"isCatalog": true,
+			"database": "de-project-yda-glue-database-raw-dev",
+			"table": "raw_statistics",
+			"calculatedType": "",
+			"runtimeParameters": [],
+			"codeGenVersion": 2
+		},
+		"node-2": {
+			"nodeId": "node-2",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-1"
+			],
+			"name": "ApplyMapping",
+			"generatedNodeName": "ApplyMapping_node2",
+			"classification": "Transform",
+			"type": "ApplyMapping",
+			"mapping": [
+				{
+					"toKey": "video_id",
+					"fromPath": [
+						"video_id"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "trending_date",
+					"fromPath": [
+						"trending_date"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "title",
+					"fromPath": [
+						"title"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "channel_title",
+					"fromPath": [
+						"channel_title"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "category_id",
+					"fromPath": [
+						"category_id"
+					],
+					"toType": "long",
+					"fromType": "long",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "publish_time",
+					"fromPath": [
+						"publish_time"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "tags",
+					"fromPath": [
+						"tags"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "views",
+					"fromPath": [
+						"views"
+					],
+					"toType": "long",
+					"fromType": "long",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "likes",
+					"fromPath": [
+						"likes"
+					],
+					"toType": "long",
+					"fromType": "long",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "dislikes",
+					"fromPath": [
+						"dislikes"
+					],
+					"toType": "long",
+					"fromType": "long",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "comment_count",
+					"fromPath": [
+						"comment_count"
+					],
+					"toType": "long",
+					"fromType": "long",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "thumbnail_link",
+					"fromPath": [
+						"thumbnail_link"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "comments_disabled",
+					"fromPath": [
+						"comments_disabled"
+					],
+					"toType": "boolean",
+					"fromType": "boolean",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "ratings_disabled",
+					"fromPath": [
+						"ratings_disabled"
+					],
+					"toType": "boolean",
+					"fromType": "boolean",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "video_error_or_removed",
+					"fromPath": [
+						"video_error_or_removed"
+					],
+					"toType": "boolean",
+					"fromType": "boolean",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "description",
+					"fromPath": [
+						"description"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				},
+				{
+					"toKey": "region",
+					"fromPath": [
+						"region"
+					],
+					"toType": "string",
+					"fromType": "string",
+					"dropped": false,
+					"children": null
+				}
+			],
+			"parentsValid": true,
+			"calculatedType": "",
+			"codeGenVersion": 2
+		},
+		"node-3": {
+			"nodeId": "node-3",
+			"dataPreview": false,
+			"previewAmount": 0,
+			"inputs": [
+				"node-2"
+			],
+			"name": "S3 bucket",
+			"generatedNodeName": "S3bucket_node3",
+			"classification": "DataSink",
+			"type": "S3",
+			"streamingBatchInterval": 100,
+			"format": "glueparquet",
+			"compression": "none",
+			"path": "s3://de-project-youtube-data-analysis-cleansed-dev/youtube/statistics/",
+			"partitionKeys": [],
+			"schemaChangePolicy": {
+				"enableUpdateCatalog": false,
+				"updateBehavior": null,
+				"database": null,
+				"table": null
+			},
+			"updateCatalogOptions": "none",
+			"calculatedType": "",
+			"codeGenVersion": 2
+		}
+	},
+	"hasBeenSaved": false,
+	"script": "import sys\nfrom awsglue.transforms import *\nfrom awsglue.utils import getResolvedOptions\nfrom pyspark.context import SparkContext\nfrom awsglue.context import GlueContext\nfrom awsglue.job import Job\nfrom awsglue.dynamicframe import DynamicFrame\n\nargs = getResolvedOptions(sys.argv, [\"JOB_NAME\"])\nsc = SparkContext()\nglueContext = GlueContext(sc)\nspark = glueContext.spark_session\njob = Job(glueContext)\njob.init(args[\"JOB_NAME\"], args)\npredicate_pushdown = \"region in ('ca','gb','us')\"\n# Script generated for node Data Catalog table\nDataCatalogtable_node1 = glueContext.create_dynamic_frame.from_catalog(\n    database=\"de-project-yda-glue-database-raw-dev\",\n    table_name=\"raw_statistics\",\n    transformation_ctx=\"DataCatalogtable_node1\",\n    push_down_predicate = predicate_pushdown,\n)\n\n# Script generated for node ApplyMapping\nApplyMapping_node2 = ApplyMapping.apply(\n    frame=DataCatalogtable_node1,\n    mappings=[\n        (\"video_id\", \"string\", \"video_id\", \"string\"),\n        (\"trending_date\", \"string\", \"trending_date\", \"string\"),\n        (\"title\", \"string\", \"title\", \"string\"),\n        (\"channel_title\", \"string\", \"channel_title\", \"string\"),\n        (\"category_id\", \"long\", \"category_id\", \"long\"),\n        (\"publish_time\", \"string\", \"publish_time\", \"string\"),\n        (\"tags\", \"string\", \"tags\", \"string\"),\n        (\"views\", \"long\", \"views\", \"long\"),\n        (\"likes\", \"long\", \"likes\", \"long\"),\n        (\"dislikes\", \"long\", \"dislikes\", \"long\"),\n        (\"comment_count\", \"long\", \"comment_count\", \"long\"),\n        (\"thumbnail_link\", \"string\", \"thumbnail_link\", \"string\"),\n        (\"comments_disabled\", \"boolean\", \"comments_disabled\", \"boolean\"),\n        (\"ratings_disabled\", \"boolean\", \"ratings_disabled\", \"boolean\"),\n        (\"video_error_or_removed\", \"boolean\", \"video_error_or_removed\", \"boolean\"),\n        (\"description\", \"string\", \"description\", \"string\"),\n        (\"region\", \"string\", \"region\", \"string\"),\n    ],\n    transformation_ctx=\"ApplyMapping_node2\",\n)\ndatasink1 = ApplyMapping_node2.toDF().coalesce(1)\ndf_final_output = DynamicFrame.fromDF(datasink1, glueContext, \"df_final_output\")\n# Script generated for node S3 bucket\nS3bucket_node3 = glueContext.write_dynamic_frame.from_options(\n    frame=df_final_output,\n    connection_type=\"s3\",\n    format=\"glueparquet\",\n    connection_options={\n        \"path\": \"s3://de-project-youtube-data-analysis-cleansed-dev/youtube/statistics/\",\n        \"partitionKeys\": [\"region\"],\n    },\n    transformation_ctx=\"S3bucket_node3\",\n)\n\njob.commit()\n"
+}
